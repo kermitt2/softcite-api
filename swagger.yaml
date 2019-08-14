@@ -1,0 +1,213 @@
+swagger: "2.0"
+info:
+  description: REST services for the Softcite Knowledge Base
+  version: "0.1.0"
+  title: Softcite REST service
+  contact:
+    name: Patrice Lopez
+    email: patrice.lopez@science-miner.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /software/{id}:
+    get:
+      operationId: software.read_one
+      tags:
+        - software
+      summary: Access information for one software entity
+      description: Access information for one software entity
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the software entity
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully access the information for the software entity
+        400:
+          description: Bad request
+
+  /software/{id}/citations:
+    get:
+      operationId: software.read_citations
+      tags:
+        - software
+        - citations
+      summary: Access information to all citations of one software entity
+      description: Access information to all citations of one software entity
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the cited software entity
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully access the information for all the citations to the software entity
+        400:
+          description: Bad request
+
+  /disambiguate:
+    post:
+      operationId: software.disambiguate
+      tags:
+        - disambiguate
+      consumes:
+        - application/x-www-form-urlencoded
+      summary: Disambiguate a software mention against the database content 
+      description: Disambiguate a software mention against the database content 
+      parameters:
+        - in: formData
+          name: json
+          type: string
+          description: The mention JSON object
+          required: True
+      responses:
+        200:
+          description: Successfully disambiguate the mention
+        400:
+          description: Bad request
+
+  /document/{id}/mentions:
+    get:
+      operationId: document.read_one_mentions
+      tags:
+        - document
+      summary: Access all mention information of one document
+      description: Access all mention information of one document
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the document
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully access the information for all the mentions to the document
+        400:
+          description: Bad request
+
+  /document/{id}/software:
+    get:
+      operationId: document.read_one_software
+      tags:
+        - document
+      summary: Access all software entities cited in one document
+      description: Access all software entities cited in one document
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the document
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully access the information for all the software entities cited in one document
+        400:
+          description: Bad request
+
+  /software/{id}/documents:
+    get:
+      operationId: software.nbest_documents
+      tags:
+        - software
+      summary: Provide the n-best citing documents for a software entity
+      description: Provide the n-best citing documents for a software entity
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the cited software entity
+          type: string
+          required: True
+        - name: n
+          in: formData
+          description: Number of most relevant documents citing a software entity (default 1)
+          type: number
+          default: 1
+          minimum: 1
+          required: False
+      responses:
+        200:
+          description: Successfully provide the n-best citing documents for a software entity
+        400:
+          description: Bad request
+
+  /software/{id}/related:
+    get:
+      operationId: software.nbest_software
+      tags:
+        - software
+      summary: Provide the n most related software entities for a given software entity
+      description: Provide the n most related software entities for a given software entity
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the cited software entity
+          type: string
+          required: True
+        - name: n
+          in: formData
+          description: Number of most relevant software entities for a given software entity (default 1)
+          type: number
+          default: 1
+          minimum: 1
+          required: False
+      responses:
+        200:
+          description: Successfully provide the n most related software entities for a given software entity
+        400:
+          description: Bad request
+
+  /document/{id}/software/related:
+    get:
+      operationId: document.nbest_software
+      tags:
+        - document
+      summary: Provide for a given document the n most relevant related software entities 
+      description: Provide for a given document the n most relevant related software entities NOT mentioned in the document
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the document for which we want the most related software
+          type: string
+          required: True
+        - name: n
+          in: formData
+          description: Number of most relevant software entities for a given document (default 1)
+          type: number
+          default: 1
+          minimum: 1
+          required: False
+      responses:
+        200:
+          description: Successfully provide the n most related software entities for a given document
+        400:
+          description: Bad request      
+
+  /person/{id}/software:
+    get:
+      operationId: person.software
+      tags:
+        - person
+      summary: Provide for a given person, all the software entities he has authored 
+      description: Provide for a given person, all the software entities he has authored and for each software the citing documents supporting the authorship 
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the person in the database
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully provide the software entities authored by one person
+        400:
+          description: Bad request      
+

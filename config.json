@@ -1,0 +1,8 @@
+{
+    "service_port": "4000",
+    "mongo_host": "localhost",
+    "mongo_port": "27017",
+    "mongo_db": "softcite",
+    "biblio_glutton_host": "cloud.science-miner.com/glutton",
+    "biblio_glutton_port": ""
+}
