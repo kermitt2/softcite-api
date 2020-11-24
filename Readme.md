@@ -4,9 +4,11 @@ This is server exposing a REST API for the softcite Software Knowledge Base.
 
 The softcite Software Knowledge Base is built on top Wikidata existing resources. 
 
+The OpenAPI 3.0 description of the Web Service API is available [here](https://github.com/kermitt2/softcite-api/blob/master/swagger/openapi.yaml). A preliminar discussion on this service can be found [here](https://github.com/ourresearch/software-mentions/blob/master/doc/usage_scenario_and_requirements.md). 
+
 ## Requirements
 
-The client has been tested with Python 3.5. 
+The client has been tested with Python 3.* 
 
 A MongoDB server version 3.* must be installed and started. 
 
@@ -61,11 +63,11 @@ The swagger documentation/console of the web services is then available at: http
 
 ### Populate the database with extraction realized by the software-mention recognizer
 
-This process need to be done by the software-mention recognizer client available at https://github.com/impactstory/software-mentions under `client/`, see the [documentation](https://github.com/impactstory/software-mentions/client/Readme.md). 
+This process need to be done by the software-mention recognizer client available at https://github.com/impactstory/software-mentions under `client/`, see the [documentation](https://github.com/ourresearch/software-mentions/tree/master/client). 
 
 The client will further feed the Knowledge Base with new software mentions via the API, and create new software, document, person, and organization entities. The new entities have identifiers prefixed with letter `E` (in contrast to entities existing in Wikidata which remains prefixed by `Q`). Software citations found in documents are added to the software entities after disambiguation as additional statements. 
 
-### Exporting the augemented KB in Wikidata json format
+### Exporting the augmented KB in Wikidata json format
 
 TBD
 
