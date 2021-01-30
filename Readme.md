@@ -26,18 +26,18 @@ Install the dependencies, use:
 
 > pip3 install -r requirements.txt
 
-An instance of MongoDB version 3.* needs to be installed. 
-
 ### Configuration
 
 In the configuration file `config.json`, the host, port and application db name of the MongoDB instance need to be provided. You can also set the port of the service. 
 
 ```json
 {
-    "service_port": "5000",
+    "service_port": "4000",
     "mongo_host": "localhost",
     "mongo_port": "27017",
-    "mongo_db": "softcite"
+    "mongo_db": "softcite",
+    "biblio_glutton_host": "cloud.science-miner.com/glutton",
+    "biblio_glutton_port": ""
 }
 ```
 
@@ -58,7 +58,7 @@ Then for launching this initialization:
 
 > python3 service.py 
 
-The swagger documentation/console of the web services is then available at: http:// **service_host** : **service_port** /api/ui/, e.g, http://localhost:5000/api/ui/.
+The swagger documentation/console of the web services is then available at: http:// **service_host** : **service_port** /api/ui/, e.g, http://localhost:5000/api/ui/
 
 
 ### Populate the database with extraction realized by the software-mention recognizer

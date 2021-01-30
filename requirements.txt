@@ -1,4 +1,4 @@
 flask
 lmdb==0.94
 pymongo
-connexion[swagger-ui]==2.3.0
+connexion[swagger-ui]==2.7.0
