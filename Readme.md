@@ -1,5 +1,7 @@
 # Softcite REST API
 
+## This repository is **outdated**, see the [Softcite Knowledge Base](https://github.com/softcite/softcite_kb) for the new and maintained version of our Research Software Knowledge Base service.
+
 This is server exposing a REST API for the softcite Software Knowledge Base. 
 
 The softcite Software Knowledge Base is built on top Wikidata existing resources. 
